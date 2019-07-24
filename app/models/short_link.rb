@@ -2,12 +2,16 @@ class ShortLink < ApplicationRecord
   HASH_SALT = "A random salt."
   SECONDS_IN_DAY = 86400
 
-  def self.create_from_url(original_url)
-    short_url = Digest::MD5.hexdigest(original_url + HASH_SALT)[0..7]
+  def self.create_from_url!(original_url, custom_short_url=nil)
+    if custom_short_url.present?
+      ShortLink.create!(short_url: custom_short_url, original_url: original_url)
+    else
+      short_url = Digest::MD5.hexdigest(original_url + HASH_SALT)[0..7]
 
-    ShortLink
-      .where(short_url: short_url)
-      .first_or_create(short_url: short_url, original_url: original_url)
+      ShortLink
+        .where(short_url: short_url)
+        .first_or_create(short_url: short_url, original_url: original_url)
+    end
   end
 
   def update_stats

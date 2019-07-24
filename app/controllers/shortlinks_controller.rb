@@ -20,9 +20,14 @@ class ShortlinksController < ApplicationController
 
   # Creates a new shortlink from a full URL.
   def new
-    s = ShortLink.create_from_url(params[:link])
+    begin
+      new_link = ShortLink.create_from_url!(params[:original_url], params[:custom_short_url])
+    rescue ActiveRecord::RecordNotUnique
+      render json: { error: 'url_taken' }, status: :internal_server_error
+      return
+    end
 
-    render json: { hash: s.short_url }
+    render json: { link: "http://#{request.host_with_port}/" + new_link.short_url }
   end
 
   private
