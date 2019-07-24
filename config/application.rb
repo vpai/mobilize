@@ -17,6 +17,6 @@ module Mobilize
     # the framework and any gems in your application.
 
     # Tell app how to find Redis.
-    config.cache_store = :redis_store, "redis://localhost:6379/0/cache"
+    config.cache_store = :redis_store, ENV.fetch("REDIS_URL", nil) || "redis://localhost:6379/0/cache"
   end
 end
