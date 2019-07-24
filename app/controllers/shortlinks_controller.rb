@@ -38,7 +38,7 @@ class ShortlinksController < ApplicationController
 
     if @short_link.nil?
       respond_to do |format|
-        format.html { render file: File.join(Rails.root, 'public', '404.html') }
+        format.html { render file: File.join(Rails.root, 'public', '404.html'), status: :not_found }
         format.json { render json: { error: 'not_found' }, status: :not_found }
       end
     end
