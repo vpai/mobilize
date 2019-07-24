@@ -1,24 +1,21 @@
-# README
+# MobilizeAmerica BE Assignment
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple link shortener, implemented using Rails, MySQL, and Redis.
 
-Things you may want to cover:
 
-* Ruby version
+## Install
 
-* System dependencies
+1. Install Ruby 2.4.0, Rails 5.2.3, MySQL 8.0.16, and Redis 5.0.5
+2. Clone this repository.
+3. `bundle install`
+4. `bundle exec rails s`.
 
-* Configuration
+## API
 
-* Database creation
+This project exposes the following API:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| Route         | Method   | Parameters | Function  | Returns |
+| ------------- |:-------------:| ------|-----|-----|
+| `/links/new`   | POST          | `original_url`: The URL to be shortened. <br> `custom_url`: Optional custom short link. | Shortens a given link.| JSON object containing short link, or `500` if custom short link is taken. |
+| `/:short_link`        | GET           | None | Redirects a given short link.| HTTP Redirect, or `404`. |
+| `/stats/:short_link`  | GET           | None | Retrieve stats on a given short link.| JSON object containing stats pertaining to short link, or `404`. |
