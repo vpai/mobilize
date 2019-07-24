@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get ':id', to: 'shortlinks#show'
+  # Main application routes.
+  get '/:hash', to: 'shortlinks#redirect'
+  get '/stats/:hash', to: 'shortlinks#stats'
+
+  # Create new short link.
   post '/links/new', to: 'shortlinks#new'
-  
+
 end
