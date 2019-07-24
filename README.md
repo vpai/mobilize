@@ -12,7 +12,7 @@ A simple link shortener, implemented using Rails, MySQL, and Redis.
 
 ## API
 
-This project exposes the following API:
+This project exposes the following API available on `http://varun-mobilize.herokuapp.com/`:
 
 | Route         | Method   | Parameters | Function  | Returns |
 | ------------- |:-------------:| ------|-----|-----|
