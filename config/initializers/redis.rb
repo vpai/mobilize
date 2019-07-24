@@ -1,0 +1,1 @@
+$redis = Redis::Namespace.new("mobilize", :redis => Redis.new)

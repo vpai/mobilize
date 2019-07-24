@@ -3,7 +3,6 @@ class CreateShortLinks < ActiveRecord::Migration[5.2]
     create_table :short_links do |t|
       t.string :short_url
       t.string :original_url
-      t.integer :total_visits, default: 0
 
       t.timestamps
     end
